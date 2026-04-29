@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blooming Self</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/p5.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.11.2/addons/p5.sound.min.js"></script>
+</head>
+<body>
+
+  <!-- ===================== 資訊框：關於這個作品 ===================== -->
+  <div id="about-work-box" class="info-box">
+    <h2>關於這個作品</h2>
+    <p class="subtitle">Blooming Self · 2024</p>
+    <p>
+      這個網頁是我的第一個 p5.js 的嘗試作品。<br>
+      以四季為意象，每個季節對應一組顏色、一種粒子、一種節奏——<br>
+      春天的花、夏天的光、秋天的葉、冬天的雪。
+    </p>
+    <p>
+      中央的樹由程式以遞迴生成，枝葉會隨時間輕輕搖曳；<br>
+      粒子則以不同的混色模式相互疊加，讓畫面隨著停留時間慢慢變化。
+    </p>
+    <div class="controls-hint">
+      <p class="hint-title">你可以這樣玩：</p>
+      <p>🌱 <b>空白鍵</b> 切換四季</p>
+      <p>✋ <b>拖曳畫面</b> 改變樹的形狀</p>
+      <p>💾 按 <b>S</b> 鍵儲存當下畫面</p>
+    </div>
+  </div>
+
+  <!-- ===================== 資訊框：關於我 ===================== -->
+  <div id="about-me-box" class="info-box">
+    <img id="info-image" src="images/your-image.jpg" alt="林芷伊的照片">
+    <h2>林芷伊</h2>
+    <p>
+      目前就讀台北科技大學互動系二年級<br>
+      高中畢業於台中高工圖文傳播科<br>
+      目前還在探索未來中~<br>
+      未來如有更多作品累積再分享給大家！
+    </p>
+
+    <div class="contact">
+      <p class="contact-title">聯絡我</p>
+      <p>✉️ <a href="mailto:your-email@example.com">yiii041027@gmail.com</a></p>
+      <p>📞 <a href="tel:+886900000000">0925-125-806</a></p>
+    </div>
+  </div>
+
+  <!-- ===================== 漢堡選單 ===================== -->
+  <div id="menu-container">
+    <button id="hamburger-menu" class="menu-btn" aria-label="開關選單">&#9776;</button>
+    <div id="menu-options">
+      <button id="show-about-work" class="menu-btn">關於這個作品</button>
+      <button id="show-about-me" class="menu-btn">關於我</button>
+    </div>
+  </div>
+
+  <!-- ===================== 左下角小標題 ===================== -->
+  <div id="site-title">
+    <p class="title-main">Blooming Self</p>
+    <p class="title-sub">a p5.js experiment</p>
+  </div>
+
+  <!-- ===================== 右下角季節指示 ===================== -->
+  <div id="season-indicator">
+    <span class="dot active" data-season="spring" title="春"></span>
+    <span class="dot" data-season="summer" title="夏"></span>
+    <span class="dot" data-season="autumn" title="秋"></span>
+    <span class="dot" data-season="winter" title="冬"></span>
+  </div>
+
+  <!-- ===================== 底部操作提示 ===================== -->
+  <div id="controls-tip">
+    press <b>SPACE</b> to change season &nbsp;·&nbsp; <b>drag</b> the tree &nbsp;·&nbsp; press <b>S</b> to save
+  </div>
+
+  <!-- ===================== 音樂提示（點擊任意處開始）===================== -->
+  <div id="audio-hint">
+    <span class="audio-hint-icon">♪</span>
+    <span class="audio-hint-text">點這裡開始音樂</span>
+  </div>
+
+  <!-- ===================== p5 畫布容器 ===================== -->
+  <div id="sketch-container"></div>
+
+  <script src="sketch.js"></script>
+</body>
+</html>

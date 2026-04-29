@@ -1,0 +1,363 @@
+/* ===== 通用 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #111;
+  font-family: "Helvetica Neue", "Noto Sans TC", Arial, sans-serif;
+  color: #fff;
+}
+
+/* ===== 畫布 ===== */
+#sketch-container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* ===== 漢堡選單 ===== */
+#menu-container {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+}
+
+.menu-btn {
+  background-color: rgba(255, 255, 255, 0.92);
+  color: #444;
+  border: none;
+  padding: 10px 16px;
+  font-size: 15px;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  font-family: inherit;
+}
+
+.menu-btn:hover {
+  background-color: #fff;
+  color: #111;
+}
+
+#hamburger-menu {
+  font-size: 20px;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+}
+
+#menu-options {
+  display: none;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+  margin-top: 12px;
+  background-color: rgba(30, 30, 30, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 10px;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.35);
+  min-width: 160px;
+}
+
+#menu-options.open {
+  display: flex;
+}
+
+/* ===== 資訊框（共用）===== */
+.info-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(90vw, 460px);
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: rgba(20, 20, 20, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: #f0f0f0;
+  padding: 28px 26px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: left;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+  display: none;
+  z-index: 1100;
+  line-height: 1.75;
+}
+
+.info-box.open {
+  display: block;
+  animation: fadeInUp 0.35s ease;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -46%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.info-box h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.info-box p {
+  font-size: 15px;
+  margin-bottom: 12px;
+  color: #d9d9d9;
+}
+
+.info-box .subtitle {
+  font-size: 13px;
+  color: #9a9a9a;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  text-transform: uppercase;
+}
+
+/* 操作提示區塊（關於作品內） */
+.controls-hint {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.controls-hint .hint-title {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.controls-hint p {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+/* 個人照片 */
+#info-image {
+  width: 100%;
+  max-width: 180px;
+  display: block;
+  margin: 0 auto 18px auto;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* 聯絡區塊 */
+.contact {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-title {
+  font-size: 13px;
+  color: #aaa;
+  margin-bottom: 8px !important;
+  letter-spacing: 0.5px;
+}
+
+.contact p {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.contact a {
+  color: #f0f0f0;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.contact a:hover {
+  border-bottom-color: #fff;
+}
+
+/* ===== 左下標題 ===== */
+#site-title {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  z-index: 900;
+  color: rgba(255, 255, 255, 0.7);
+  user-select: none;
+  pointer-events: none;
+}
+
+.title-main {
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1.5px;
+}
+
+.title-sub {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* ===== 右下季節指示點 ===== */
+#season-indicator {
+  position: absolute;
+  bottom: 22px;
+  right: 24px;
+  z-index: 900;
+  display: flex;
+  gap: 10px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.25);
+  transition: all 0.4s ease;
+}
+
+.dot.active {
+  background-color: rgba(255, 255, 255, 0.95);
+  transform: scale(1.6);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+/* ===== 底部操作提示（首次進入淡入淡出）===== */
+#controls-tip {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 1px;
+  user-select: none;
+  pointer-events: none;
+  opacity: 0;
+  animation: tipFade 6s ease forwards;
+  white-space: nowrap;
+}
+
+@keyframes tipFade {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  70%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* ===== 音樂提示（透明、可點擊） ===== */
+#audio-hint {
+  position: absolute;
+  top: 22px;
+  right: 24px;
+  z-index: 950;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  background-color: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+
+  /* 呼吸效果，淡淡引導 */
+  animation: audioHintPulse 2.8s ease-in-out infinite;
+
+  transition: opacity 0.4s ease, transform 0.4s ease,
+              background-color 0.2s ease, border-color 0.2s ease;
+}
+
+#audio-hint:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+
+#audio-hint.hidden {
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+}
+
+.audio-hint-icon {
+  font-size: 15px;
+  line-height: 1;
+}
+
+@keyframes audioHintPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.18); }
+  50%      { box-shadow: 0 0 0 6px rgba(255, 255, 255, 0); }
+}
+
+/* ===== 手機響應式 ===== */
+@media (max-width: 480px) {
+  .info-box {
+    padding: 22px 20px;
+    line-height: 1.65;
+  }
+  .info-box h2 { font-size: 19px; }
+  .info-box p  { font-size: 14px; }
+  .menu-btn    { font-size: 14px; }
+
+  #site-title       { bottom: 52px; left: 14px; }
+  .title-main       { font-size: 13px; }
+  .title-sub        { font-size: 10px; }
+
+  #season-indicator { bottom: 52px; right: 16px; }
+
+  #controls-tip {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    white-space: normal;
+    width: 90%;
+    text-align: center;
+  }
+
+  #audio-hint {
+    top: 14px;
+    right: 14px;
+    padding: 7px 12px;
+    font-size: 11px;
+  }
+}
+
+/* ===== 「關於我」資訊框置中 ===== */
+#about-me-box,
+#about-me-box .contact {
+  text-align: center;
+}
